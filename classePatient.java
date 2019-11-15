@@ -6,7 +6,7 @@ public class Patient {
    private Date naissance;
    private String numeroNational;
    private Date entree = new Date();
-   Chambre numeroChambre = null;
+   //Chambre numeroChambre = null;
 
    @Override
    public String toString() {
