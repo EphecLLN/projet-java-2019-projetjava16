@@ -1,0 +1,43 @@
+public class Service {
+	// arg
+	
+	private String nomService;
+	int nombreChambreTotal;
+	int nombreChambreRestant;
+	int nombreLitsTotal;
+	int nombreLitsRestant;
+	
+	//méthode lits
+	//public void totLits(int n){}
+	public void increLits(int n){
+		nombreLitsRestant += n;
+	}
+	public void decreLits(int n){
+		nombreLitsRestant -= n;
+	}
+	
+	//méthode chambre
+	//public void totChambre(int n){}
+	public void increChambre(int n){
+		nombreChambreRestant += n;
+	}
+	public void decreChambre(int n){
+		nombreChambreRestant -= n;
+	}
+	
+	//fonction main
+	
+	public static void main(String []args){
+		Service service = new Service();
+		service.nomService = args[0];
+		service.nombreChambreTotal = Integer.parseInt(args[1]);
+		service.nombreChambreRestant = Integer.parseInt(args[2]);
+		service.nombreLitsTotal = Integer.parseInt(args[3]);
+		service.nombreLitsRestant = Integer.parseInt(args[4]);
+		
+		//test vérification des méthodes
+		service.decreChambre(1);
+		System.out.println(service.nombreChambreRestant);
+		service.decreLits(2);
+		System.out.println(service.nombreLitsRestant);	
+		}
