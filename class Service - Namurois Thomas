@@ -40,4 +40,5 @@ public class Service {
 		System.out.println(service.nombreChambreRestant);
 		service.decreLits(2);
 		System.out.println(service.nombreLitsRestant);	
-		}
+	}
+}
