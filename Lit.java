@@ -1,6 +1,8 @@
 // Temmerman François 
 package projetH;
 
+import java.util.Scanner;
+
 public class Lit {
 
 		private int numero; 
@@ -30,11 +32,22 @@ public class Lit {
 		// TODO Auto-generated method stub
 		
 		Lit lit = new Lit(); 
+		Scanner sc = new Scanner(System.in);
+		int tabLit[]= new int[10];
+		int chambre;
 		
-		lit.setNumero(15); 
+		//lit.setNumero(15); 
 		
-		System.out.println(lit.toString());
+		//System.out.println(lit.toString());
 		
+		System.out.println("entrez un numero de lit: ");
+		int num =+
+		System.out.println("Lit numero : " + num + " est enregistrer");
+		tabLit[0] = num;
+		
+		for(int i=0; i<tabLit.length;  i++) {
+		System.out.println(tabLit[i]);
+		}
 	}
 
 }
