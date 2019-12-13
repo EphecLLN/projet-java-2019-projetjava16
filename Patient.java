@@ -1,47 +1,44 @@
-/**
- * 
- */
-package projetH;
+package hopital;
 
 import java.util.Scanner;
+import java.time.LocalDate;
 
-/**
- * @author user
- *
- */
 public class Patient {
-
 	/**
 	 * @param args
 	 */
 	 String nom;
 	 String prenom;
+	 LocalDate naissance;
+	 char genre;
 	 
-	 
-	 //constructeur
 	 public Patient() {
-		 
 		 Scanner sc = new Scanner(System.in);
 		 
-		 System.out.println("entrez un Nom:");
+		 System.out.println("entrez le nom de famille du patient :");
 		 String nom = sc.nextLine();
 			
-		 System.out.println("entrez un Prenom");
+		 System.out.println("entrez le prénom du patient : ");
 		 String prenom = sc.nextLine();
+		 
+		 System.out.println("entrez le genre/sexe du patient (m/f) : ");
+		 char genre = sc.nextLine().charAt(0);
+		 
+		 System.out.println("entrez la date de naissance du patient (Format : aaaa-mm-jj) : ");
+		 LocalDate naissance = LocalDate.parse(sc.nextLine());
 		 
 		 this.nom = nom;
 		 this.prenom = prenom;
+		 this.genre = genre;
+		 this.naissance = naissance;
 		 
-		 System.out.println(nom +" "+ prenom +" vient d'être hospitalisé.");
+		 String appellation = (this.genre == 'm')? "M." : "Mme";
+		 	 
+		 AjoutPatient nouveau = new AjoutPatient(nom, prenom, genre, naissance);
 		 
-		 ajoutPatient nouveau = new ajoutPatient(nom, prenom);
-		
-		 
+		 System.out.println(appellation + " " + nom + " vient d'être hospitalisé. \n");
 	 }
 		   
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
-
 }

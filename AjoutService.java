@@ -4,28 +4,24 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Scanner;
 
-public class SuppressionPatient {
-	public SuppressionPatient(){
+public class AjoutService {
+	/**
+	 * @param args
+	 */
+	public AjoutService(String nom, int litTot, int litRest) {
 		String url = "jdbc:mysql://localhost/hopital";
 		String login = "root";
 		String passwd = "";
 		Connection cn = null;
 		Statement st = null;
 		
-		Scanner sc = new Scanner(System.in);
-		
-		System.out.println("entrez l'id du patient à supprimer :");
-		int idPatient = sc.nextInt();
-		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			cn = DriverManager.getConnection(url, login, passwd);
 			st = cn.createStatement();
-			String sql = "DELETE FROM admission WHERE idPatient = '"+ idPatient + "'";
-			st.executeUpdate(sql);
-			sql = "DELETE FROM patient WHERE idPatient ='" + idPatient + "'";
+			String sql = "INSERT INTO service(nom, litTot, litRest) VALUES ('" + nom + "','" + litTot + "', '" + litRest + "')";
+			
 			st.executeUpdate(sql);
 		}
 		catch(SQLException e) {
@@ -43,6 +39,8 @@ public class SuppressionPatient {
 				e2.printStackTrace();
 			}
 		}
-		System.out.println("\nLe patient à l'id : " + idPatient + " a été supprimé. \n");
+	}
+	
+	public static void main(String[] args) {
 	}
 }

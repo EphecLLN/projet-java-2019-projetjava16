@@ -8,26 +8,26 @@ import java.util.Scanner;
 
 //import com.mysql.jdbc.ResultSet;
 
-public class EnleverLitServ {
-	
-    public EnleverLitServ(){
+public class AjoutLitServ {
+    public AjoutLitServ(){
         String url = "jdbc:mysql://localhost/hopital";
         String login = "root";
-		String passwd = "";
+        String passwd = "";
         Connection cn = null;
         Statement st = null;
-       
+        //ResultSet rs = null;
         Scanner sc = new Scanner(System.in);
-        System.out.println("entrez le nom du service disposant d'un lit de moins :");
+        System.out.println("entrez le nom du service disposant d'un lit supplémentaire : ");
         String nom = sc.next();
 
         try{
-			Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             cn = DriverManager.getConnection(url, login, passwd);
             st = cn.createStatement();
-            String sql = "UPDATE service SET litRest = litRest-1 WHERE nom = '" + nom + "' AND litRest > 0";
-          
+            String sql = "UPDATE service SET litRest = litRest+1 where nom = '" + nom + "' AND litRest < litTot";
+            
             st.executeUpdate(sql);
+            
         }
         catch (SQLException var20) {
             var20.printStackTrace();
@@ -44,6 +44,6 @@ public class EnleverLitServ {
                 var19.printStackTrace();
             }
         }
-        System.out.println("\nLe service " + nom + " dispose d'un lit de moins.\n");
+        System.out.println("\nLe service " + nom + " dispose d'un lit de plus.\n");
     }
 }
