@@ -1,4 +1,4 @@
-package projetH;
+package hopital;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,42 +6,44 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-import com.mysql.jdbc.ResultSet;
+//import com.mysql.jdbc.ResultSet;
 
-public class ajoutLitServ {
-    public ajoutLitServ(){
+public class AjoutLitServ {
+    public AjoutLitServ(){
         String url = "jdbc:mysql://localhost/hopital";
-        String login = "Francois";
-        String passwd = "1234";
+        String login = "root";
+        String passwd = "";
         Connection cn = null;
         Statement st = null;
-        ResultSet rs = null;
+        //ResultSet rs = null;
         Scanner sc = new Scanner(System.in);
-        System.out.println("entrez le nom du service du patient sortant:");
+        System.out.println("entrez le nom du service disposant d'un lit supplémentaire : ");
         String nom = sc.next();
 
         try{
             Class.forName("com.mysql.jdbc.Driver");
             cn = DriverManager.getConnection(url, login, passwd);
             st = cn.createStatement();
-            String sql = "UPDATE service SET litRest = litRest+1 where nom = '" + nom + "'";
+            String sql = "UPDATE service SET litRest = litRest+1 where nom = '" + nom + "' AND litRest < litTot";
             
             st.executeUpdate(sql);
             
         }
         catch (SQLException var20) {
             var20.printStackTrace();
-        } catch (ClassNotFoundException var21) {
+        } 
+		catch (ClassNotFoundException var21) {
             var21.printStackTrace();
-        } finally {
+        } 
+		finally {
             try {
                 cn.close();
                 st.close();
-            } catch (SQLException var19) {
+            } 
+			catch (SQLException var19) {
                 var19.printStackTrace();
             }
-
         }
-
+        System.out.println("\nLe service " + nom + " dispose d'un lit de plus.\n");
     }
 }
