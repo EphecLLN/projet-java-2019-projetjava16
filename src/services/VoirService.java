@@ -27,12 +27,20 @@ public class VoirService {
             rs = (ResultSet)st.executeQuery(sql);
 
             while(rs.next()) {
-                System.out.print("\nService : ");
+            	System.out.print("\n(Confidentiel) id du service : ");
+                System.out.println(rs.getInt("idService"));
+            	System.out.print("Service : ");
                 System.out.println(rs.getString("nom"));
-                System.out.print("litTot : ");
-                System.out.println(rs.getInt("litTot"));
-                System.out.print("litRest : ");
-                System.out.println(rs.getInt("litRest"));
+            }
+            
+            sql = "SELECT nombreLitsTotal, nombreLitsRestants FROM nombreLits NATURAL JOIN service WHERE nom = '" + nom + "'";
+            rs = (ResultSet)st.executeQuery(sql);
+            
+            while(rs.next()) {
+            	System.out.print("nombreLitsTotal : ");
+                System.out.println(rs.getInt("nombreLitsTotal"));
+            	System.out.print("nombreLitsRestants : ");
+                System.out.println(rs.getInt("nombreLitsRestants"));
                 System.out.println("--------");
             }
         }

@@ -10,7 +10,7 @@ import com.mysql.jdbc.ResultSet;
 
 public class AjoutPatient {
 	
-	public AjoutPatient(String nom, String prenom, char genre, LocalDate naissance) {
+	public AjoutPatient(String nom, String prenom, char genre, LocalDate naissance, String numero) {
 		String url = "jdbc:mysql://localhost/hopital";
 		String login = "root";
 		String passwd = "";
@@ -22,9 +22,9 @@ public class AjoutPatient {
 			
 			cn = DriverManager.getConnection(url, login, passwd);
 			st = cn.createStatement();
-			String sql = "INSERT INTO patient(nom, prenom, genre, naissance) VALUES ('" + nom + "','" + prenom + "','" + genre + "','" + naissance + "')";
-			
+			String sql = "INSERT INTO patient(nom, prenom, genre, naissance, numTel) VALUES ('" + nom + "','" + prenom + "','" + genre + "','" + naissance + "','" + numero + "')";
 			st.executeUpdate(sql);
+			
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
@@ -62,13 +62,15 @@ public class AjoutPatient {
 			
 			while (rs.next()) {
 				System.out.print("Nom : ");
-				System.out.println(rs.getString("Nom"));
+				System.out.println(rs.getString("nom"));
 				System.out.print("Prenom : ");
-				System.out.println(rs.getString("Prenom"));
+				System.out.println(rs.getString("prenom"));
 				System.out.print("Genre : ");
-				System.out.println(rs.getString("Genre").charAt(0));
+				System.out.println(rs.getString("genre").charAt(0));
 				System.out.print("Date de naissance : ");
-				System.out.println(rs.getDate("Naissance"));
+				System.out.println(rs.getDate("naissance"));
+				System.out.print("Numéro de contact : ");
+				System.out.println(rs.getString("numTel"));
 				System.out.println("--------");
 				
 			}		
