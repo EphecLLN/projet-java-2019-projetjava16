@@ -4,14 +4,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 import com.mysql.jdbc.ResultSet;
 
-public class AfficherPatients {
+public class VoirChambres {
 	/**
 	 * @param args
 	 */	
-	public AfficherPatients() {
+	public VoirChambres() {
+		
 		String url = "jdbc:mysql://localhost/hopital";
 		String login = "root";
 		String passwd = "";
@@ -19,28 +21,28 @@ public class AfficherPatients {
 		Statement st = null;
 		ResultSet rs = null;
 		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Entrez l'id du service lequel vous voulez afficher les chambres : ");
+		int idService = sc.nextInt();
+	
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			cn = DriverManager.getConnection(url, login, passwd);
 			st = cn.createStatement();
-			String sql = "SELECT * FROM patient";
+			String sql = "SELECT idChambre, numero, nombreLitsRestants FROM chambre NATURAL JOIN chambrelits WHERE idService = '" + idService + "' ORDER BY nombreLitsRestants asc";
 			
 			rs = (ResultSet) st.executeQuery(sql);
 			
 			while (rs.next()) {
-				System.out.print("IdPatient : ");
-				System.out.println(rs.getInt("idPatient"));
-				System.out.print("Nom : ");
-				System.out.println(rs.getString("nom"));
-				System.out.print("Prenom : ");
-				System.out.println(rs.getString("prenom"));
-				System.out.print("Genre : ");
-				System.out.println(rs.getString("genre").charAt(0));
-				System.out.print("Date de naissance : ");
-				System.out.println(rs.getDate("naissance"));
+				System.out.print("(Confidentiel) Id de la chambre : ");
+				System.out.println(rs.getInt("idChambre"));
+				System.out.print("Numéro de la chambre : ");
+				System.out.println(rs.getInt("numero"));
+				System.out.print("Nombre de places restantes : ");
+				System.out.println(rs.getInt("nombreLitsRestants"));
 				System.out.println("--------");
-				
-			}		
+			}			
 		}
 		catch(SQLException e) {
 			e.printStackTrace();

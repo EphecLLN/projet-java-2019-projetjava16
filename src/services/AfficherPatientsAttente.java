@@ -8,33 +8,28 @@ import java.util.Scanner;
 
 import com.mysql.jdbc.ResultSet;
 
-public class AfficherUnPatient {
+
+public class AfficherPatientsAttente {
 	/**
 	 * @param args
-	 */	
-	public AfficherUnPatient() {
-		
+	 */
+	public AfficherPatientsAttente() {
 		String url = "jdbc:mysql://localhost/hopital";
 		String login = "root";
 		String passwd = "";
 		Connection cn = null;
 		Statement st = null;
-		ResultSet rs = null;
-		
 		Scanner sc = new Scanner(System.in);
-		
-		System.out.println("entrez le nom du famille du patient à afficher:");
-		String nom = sc.next();
-		
-		System.out.println("entrez le prénom du patient à afficher:");
-		String prenom = sc.next();
-		
+		ResultSet rs = null;
+			
+		System.out.println("entrez l'id du service auquel vous voulez voir les patients en attente : ");
+		int idService = sc.nextInt();
+			
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			cn = DriverManager.getConnection(url, login, passwd);
 			st = cn.createStatement();
-			String sql = "SELECT * FROM patient WHERE nom ='" + nom + "'" + " AND prenom ='" + prenom + "'";
-			
+			String sql = "SELECT idPatient, nom, prenom, numTel, enregistrement FROM patient NATURAL JOIN attente WHERE idService = '" + idService + "' ORDER BY enregistrement asc" ;
 			rs = (ResultSet) st.executeQuery(sql);
 			
 			while (rs.next()) {
@@ -44,19 +39,10 @@ public class AfficherUnPatient {
 				System.out.println(rs.getString("nom"));
 				System.out.print("Prenom : ");
 				System.out.println(rs.getString("prenom"));
-				System.out.print("Genre : ");
-				System.out.println(rs.getString("genre").charAt(0));
-				System.out.print("Date de naissance : ");
-				System.out.println(rs.getDate("naissance"));
 				System.out.print("Numéro de contact : ");
-				System.out.println(rs.getString("numTel"));	
-			}	
-		
-			sql = "SELECT numero FROM chambre NATURAL JOIN patientchambre NATURAL JOIN patient WHERE nom ='" + nom + "'" + " AND prenom ='" + prenom + "'";
-			rs = (ResultSet) st.executeQuery(sql);
-			while (rs.next()) {
-				System.out.print("Numéro de la chambre : ");
-				System.out.println(rs.getInt("numero"));
+				System.out.println(rs.getString("numTel"));
+				System.out.print("Date d'enregistrement : ");
+				System.out.println(rs.getString("enregistrement"));
 				System.out.println("--------");
 			}
 		}
