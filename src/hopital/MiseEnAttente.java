@@ -8,9 +8,7 @@ import java.time.LocalDateTime;
 
 
 public class MiseEnAttente {
-	/**
-	 * @param args
-	 */
+	
 	public MiseEnAttente(int idPatient, int idService) {
 		String url = "jdbc:mysql://localhost/hopital";
 		String login = "root";
