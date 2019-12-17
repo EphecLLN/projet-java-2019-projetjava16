@@ -16,15 +16,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/user/Documents/pilotejdbcmysql/com.mysql.jdbc_5.1.5.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/user/Documents/pilotejdbcmysql/mysql-connector-java-5.1.48-bin.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/user/Documents/pilotejdbcmysql/com.mysql.jdbc_5.1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/Documents/pilotejdbcmysql/mysql-connector-java-5.1.48-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

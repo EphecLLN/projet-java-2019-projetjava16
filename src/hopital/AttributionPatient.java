@@ -7,10 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AttributionPatient {
-	/**
-	 * @param args
-	 */
+	
 	int retour ;
+	
 	public AttributionPatient(int idPatient,int idService){
 			
 		String url = "jdbc:mysql://localhost/hopital";
